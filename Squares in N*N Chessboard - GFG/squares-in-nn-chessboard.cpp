@@ -9,13 +9,24 @@ class Solution {
   public:
     long long squaresInChessBoard(long long n) {
         // code here
-        long long dp[n+1];
-        dp[1]=1;
-        for(long long i=2;i<=n;i++)
+        // long long dp[n+1];
+        // dp[1]=1;
+        // for(long long i=2;i<=n;i++)
+        // {
+        //     dp[i]=(i*i)+dp[i-1];
+        // }
+        // return dp[n];
+        
+        
+        long long ans=0;
+        if(n==1)
+        return 1;
+        while(n>=0)
         {
-            dp[i]=(i*i)+dp[i-1];
+            ans+=(n*n);
+            n--;
         }
-        return dp[n];
+        return ans;
     }
 };
 
