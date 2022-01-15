@@ -11,51 +11,51 @@ class Solution{
 public:
     string decodedString(string s){
         // code here
-          string num = "";
-        string ans="";
-        int n;
-        string temp="";
-        string temp2="";
-        stack<char> st;
-        int p = 0;
+          if(s.size() == 0) return "";
+        string res = "";
+        stack<int> count;
+        stack<string> st;
         
-        while(p<s.size())
-        {    if(s[p]==']')
-             {  while(st.top() != '[')
+        for(int i=0; i<s.size(); i++)
+        {
+            if(isdigit(s[i]))
+            {
+                string str = "";
+                while(i < s.size() && s[i+1] != '[')
+                    str += s[i++];
+                str += s[i];
+                count.push(stoi(str));
+            }
+            else if(s[i] == ']')
+            {
+                int cnt = count.top();
+                count.pop();
+                
+                string str = "";
+                while(!st.empty() && st.top() != "[")
                 {
-                    temp=st.top()+temp;
+                    str =  st.top() + str;
                     st.pop();
                 }
-                 st.pop();
-              while(isdigit(st.top()))
-                {    num=st.top()+num;
-                     st.pop();
-                     if(st.empty()){
-                         break;
-                     }
-                }
-                n=stoi(num);
-                for(int i=1;i<=n;i++)
-                {   temp2=temp2+temp;
-                }
-                if(st.empty())
-                {   ans=temp2;
-                    break;
-                }
-                for(int i=0;i<temp2.size();i++)
-                {    st.push(temp2[i]);
-                }
                 
-                temp="";
-                temp2="";
-                num="";
+                st.pop();
+                string temp = "";
+                for(int k=0; k<cnt; k++)
+                    temp = str + temp;
+                
+                st.push(temp);
             }
             else
-            {    st.push(s[p]);
-            }
-            p++;
+                st.push(string(1,s[i]));
         }
-        return ans;
+        
+        while(!st.empty())
+        {
+            res = st.top() + res;
+            st.pop();
+        }
+        
+        return res;
     }
 };
 
