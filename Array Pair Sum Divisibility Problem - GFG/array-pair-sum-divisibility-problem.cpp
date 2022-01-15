@@ -10,7 +10,7 @@ class Solution {
         map<int,int>m;
         for(auto a:nums)
         {
-            m[(a+k)%k]++;
+            m[(a%k+k)%k]++;
         }
         if(m[0]%2==1)
         return false;
