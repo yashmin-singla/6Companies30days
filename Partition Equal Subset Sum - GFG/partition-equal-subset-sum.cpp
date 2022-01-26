@@ -28,7 +28,7 @@ public:
         {
             if(i==0 || j==0)    
                 dp[i][j] = 0;
-            else if(nums[i-1] > j)    //SkIP case
+            else if(nums[i-1] > j)   
                 dp[i][j] = dp[i-1][j];
             else if(nums[i-1]==j)
                 dp[i][j] =1;
