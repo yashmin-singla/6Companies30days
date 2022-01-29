@@ -14,7 +14,7 @@ class Solution{
         int i=0;
         while(i<n)
         {
-            if(i==0 || isupper(s[i]))
+            if(isupper(s[i]))
             {
                 ans+=tolower(s[i]);
                 i++;
